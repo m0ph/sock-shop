@@ -93,8 +93,8 @@ agent any
                 sh 'rm -Rf .kube'
                 sh 'mkdir .kube'
                 sh 'cat $KUBECONFIG > .kube/config'
-                sh 'kubectl apply -f ./front-end/manifests'
-                sh 'kubectl apply -f ./ingress'
+                sh 'kubectl apply -f ./front-end/manifests -n $NAMESPACE'
+                sh 'kubectl apply -f ./ingress -n $NAMESPACE'
             }
             
 
