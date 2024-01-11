@@ -98,7 +98,7 @@ agent any
                 sh 'kubectl apply -f ./microservices/catalogue-db/manifests -n $NAMESPACE'
                 sh 'kubectl apply -f ./microservices/catalogue/manifests -n $NAMESPACE'
                 sh 'kubectl apply -f ./microservices/carts-db/manifests -n $NAMESPACE'
-                sh 'kubectl apply -f ./microservices/caarts/manifests -n $NAMESPACE'
+                sh 'kubectl apply -f ./microservices/carts/manifests -n $NAMESPACE'
                 sh 'kubectl apply -f ./microservices/queue-master/manifests -n $NAMESPACE'
             }
             
