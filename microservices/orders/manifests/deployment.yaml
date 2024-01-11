@@ -1,24 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-deployment
+  name: orders-deployment
+  namespace: dev
   labels: 
-    app: user-deployment
+    app: orders-deployment
 spec:
   selector:
     matchLabels:
-      app: user-deployment
-  replicas: 1
+      app: shsipping-deployment
+  replicas: 3
   strategy: 
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: user-deployment
+        app: orders-deployment
     spec:
       containers:
-        - name: user
-          image: wm0ph/user:latest
+        - name: orders
+          image: m0ph/orders:latest
           ports:
             - containerPort: 80
           securityContext:
@@ -28,12 +29,12 @@ spec:
               add:
                 - NET_BIND_SERVICE
           env:
-            - name: MONGO_HOST
-              value: "user-db:27017"
+            - name: JAVA_OPTS
+              value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
           resources:
             limits:
-              cpu: 300m
-              memory: 200Mi
+              cpu: 500m
+              memory: 500Mi
             requests:
               cpu: 100m
-              memory: 100Mi
+              memory: 300Mi
