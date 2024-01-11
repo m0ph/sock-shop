@@ -95,6 +95,8 @@ agent any
                 sh 'cat $KUBECONFIG > .kube/config'
                 sh 'kubectl apply -f ./microservices/front-end/manifests -n $NAMESPACE'
                 sh 'kubectl apply -f ./microservices/ingress -n $NAMESPACE'
+                sh 'kubectl apply -f ./microservices/catalogue-db -n $NAMESPACE'
+                sh 'kubectl apply  -f ./microservices/cataloge -n $NAMESPACE'
             }
             
 
