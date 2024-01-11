@@ -2,14 +2,13 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: orders-deployment
-  namespace: dev
   labels: 
     app: orders-deployment
 spec:
   selector:
     matchLabels:
       app: shsipping-deployment
-  replicas: 3
+  replicas: 2
   strategy: 
     type: RollingUpdate
   template:
@@ -34,7 +33,7 @@ spec:
           resources:
             limits:
               cpu: 500m
-              memory: 500Mi
+              memory: 300Mi
             requests:
               cpu: 100m
-              memory: 300Mi
+              memory: 100Mi
