@@ -12,10 +12,14 @@ pipeline {
         DOCKER_IMAGE_USER = "user"
         DOCKER_IMAGE_USER_DB = "user-db"
         DOCKER_TAG = "${BUILD_ID}"
+        BUILD_AGENT  = ""
     }
 agent any
     stages {
         stage('Build') {
+            agent  {
+                label 'dind-agent'
+            }
             steps { //create a loop somehow??
                 sh 'docker build -t $DOCKER_ID/$DOCKER_IMAGE_CARTS:$DOCKER_TAG ./microservices/carts'
                 sh 'docker build -t $DOCKER_ID/$DOCKER_IMAGE_CATALOGUE:$DOCKER_TAG ./microservices/catalogue'
@@ -30,6 +34,9 @@ agent any
             }
         }
         stage('Run') {
+            agent  {
+                label 'dind-agent'
+            }
             steps {
                 sh 'docker network create $BUILD_TAG'
                 sh 'docker run -d --name $DOCKER_IMAGE_CARTS --rm --network $BUILD_TAG $DOCKER_ID/$DOCKER_IMAGE_CARTS:$DOCKER_TAG'
@@ -47,6 +54,9 @@ agent any
         stage('Push') {
             environment {
                 DOCKER_PASS = credentials("DOCKER_HUB_PASS")
+            }
+            agent  {
+                label 'dind-agent'
             }
             steps {
                 sh 'docker image tag $DOCKER_ID/$DOCKER_IMAGE_CARTS:$DOCKER_TAG $DOCKER_ID/$DOCKER_IMAGE_CARTS:latest'
