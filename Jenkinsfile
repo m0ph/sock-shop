@@ -103,6 +103,10 @@ agent any
                 sh 'kubectl apply -f ./microservices/rabbitmq/manifests -n $NAMESPACE'
                 sh 'kubectl apply -f ./microservices/user-db/manifests -n $NAMESPACE'
                 sh 'kubectl apply -f ./microservices/user/manifests -n $NAMESPACE'
+                sh 'kubectl apply -f ./microservices/orders-db/manifests -n $NAMESPACE'
+                sh 'kubectl apply -f ./microservices/orders/manifests -n $NAMESPACE'
+                sh 'kubectl apply -f ./microservices/payment/manifests -n $NAMESPACE'
+                sh 'kubectl apply -f ./microservices/shipping/manifests -n $NAMESPACE'
             }
             
 
