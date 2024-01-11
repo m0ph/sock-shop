@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: carts-deployment
-  namespace: dev
   labels: 
     app: carts-deployment
 spec:
