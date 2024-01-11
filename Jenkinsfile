@@ -14,9 +14,7 @@ pipeline {
         DOCKER_TAG = "${BUILD_ID}"
         BUILD_AGENT  = ""
     }
-agent  {
-    label 'dind-agent'
-    }
+agent any
     stages {
         stage('Build') {
             steps { //create a loop somehow??
@@ -36,15 +34,26 @@ agent  {
             steps {
                 sh 'docker network create $BUILD_TAG'
                 sh 'docker run -d --name $DOCKER_IMAGE_CARTS --rm --network $BUILD_TAG $DOCKER_ID/$DOCKER_IMAGE_CARTS:$DOCKER_TAG'
+                sh 'docker stop $DOCKER_IMAGE_CARTS'
                 sh 'docker run -d --name $DOCKER_IMAGE_CATALOGUE --rm --network $BUILD_TAG $DOCKER_ID/$DOCKER_IMAGE_CATALOGUE:$DOCKER_TAG'
+                sh 'docker stop $DOCKER_IMAGE_CATALOGUE'
                 sh 'docker run -d --name $DOCKER_IMAGE_CATALOGUE_DB --rm --network $BUILD_TAG $DOCKER_ID/$DOCKER_IMAGE_CATALOGUE_DB:$DOCKER_TAG'
+                sh 'docker stop $DOCKER_IMAGE_CATALOGUE_DB'
                 sh 'docker run -d --name $DOCKER_IMAGE_FRONT_END --rm --network $BUILD_TAG $DOCKER_ID/$DOCKER_IMAGE_FRONT_END:$DOCKER_TAG'
+                sh 'docker stop $DOCKER_IMAGE_FRONT_END'
                 sh 'docker run -d --name $DOCKER_IMAGE_ORDERS --rm --network $BUILD_TAG $DOCKER_ID/$DOCKER_IMAGE_ORDERS:$DOCKER_TAG'
+                sh 'docker stop $DOCKER_IMAGE_ORDERS'
                 sh 'docker run -d --name $DOCKER_IMAGE_PAYMENT --rm --network $BUILD_TAG $DOCKER_ID/$DOCKER_IMAGE_PAYMENT:$DOCKER_TAG'
+                sh 'docker stop $DOCKER_IMAGE_PAYMENT'
                 sh 'docker run -d --name $DOCKER_IMAGE_QUEUE --rm --network $BUILD_TAG $DOCKER_ID/$DOCKER_IMAGE_QUEUE:$DOCKER_TAG'
+                sh 'docker stop $DOCKER_IMAGE_QUEUE'
                 sh 'docker run -d --name $DOCKER_IMAGE_SHIPPING --rm --network $BUILD_TAG $DOCKER_ID/$DOCKER_IMAGE_SHIPPING:$DOCKER_TAG'
+                sh 'docker stop $DOCKER_IMAGE_SHIPPING'
                 sh 'docker run -d --name $DOCKER_IMAGE_USER --rm --network $BUILD_TAG $DOCKER_ID/$DOCKER_IMAGE_USER:$DOCKER_TAG'
+                sh 'docker stop $DOCKER_IMAGE_USER'
                 sh 'docker run -d --name $DOCKER_IMAGE_USER_DB --rm --network $BUILD_TAG $DOCKER_ID/$DOCKER_IMAGE_USER_DB:$DOCKER_TAG'
+                sh 'docker stop  $DOCKER_IMAGE_USER_DB'
+                sh 'docker network rm $BUILD_TAG'
             }
         }
         stage('Push') {
