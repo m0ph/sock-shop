@@ -40,7 +40,7 @@ agent any
                 sh 'sleep 5'
                 sh 'docker stop $DOCKER_IMAGE_CATALOGUE'
                 sh 'docker run -d --name $DOCKER_IMAGE_CATALOGUE_DB --rm --network $BUILD_TAG $DOCKER_ID/$DOCKER_IMAGE_CATALOGUE_DB:$DOCKER_TAG'
-                sh 'sleep 5'
+                sh 'sleep 10'
                 sh 'docker stop $DOCKER_IMAGE_CATALOGUE_DB'
                 sh 'docker run -d --name $DOCKER_IMAGE_FRONT_END --rm --network $BUILD_TAG $DOCKER_ID/$DOCKER_IMAGE_FRONT_END:$DOCKER_TAG'
                 sh 'sleep 5'
@@ -102,7 +102,7 @@ agent any
                 sh 'rm -Rf .kube'
                 sh 'mkdir .kube'
                 sh 'cat $KUBECONFIG > .kube/config'
-                sh 'kubectl apply -f'
+                // sh 'kubectl apply -f'
             }
             
 
