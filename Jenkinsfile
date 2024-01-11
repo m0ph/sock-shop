@@ -14,7 +14,6 @@ pipeline {
         DOCKER_TAG = "${BUILD_ID}"
         BUILD_AGENT  = ""
     }
-agent any
     stages {
         stage('Build') {
             agent  {
