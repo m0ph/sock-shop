@@ -13,6 +13,7 @@ pipeline {
         DOCKER_IMAGE_USER_DB = "user-db"
         DOCKER_TAG = "${BUILD_ID}"
         BUILD_AGENT  = ""
+        NAMESPACE = "sock-shop"
     }
 agent any
     stages {
@@ -92,7 +93,8 @@ agent any
                 sh 'rm -Rf .kube'
                 sh 'mkdir .kube'
                 sh 'cat $KUBECONFIG > .kube/config'
-                // sh 'kubectl apply -f'
+                sh 'kubectl apply -f ./front-end/manifests'
+                sh 'kubectl apply -f ./ingress'
             }
             
 
