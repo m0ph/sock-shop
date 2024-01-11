@@ -37,7 +37,7 @@ agent any
                 sh 'docker stop $DOCKER_IMAGE_CARTS'
                 sh 'docker run -d --name $DOCKER_IMAGE_CATALOGUE --rm --network $BUILD_TAG $DOCKER_ID/$DOCKER_IMAGE_CATALOGUE:$DOCKER_TAG'
                 sh 'docker stop $DOCKER_IMAGE_CATALOGUE'
-                sh 'docker run -d --name $DOCKER_IMAGE_CATALOGUE_DB --env MYSQL_RANDOM_ROOT_PASSWORD=yes  --rm --network $BUILD_TAG $DOCKER_ID/$DOCKER_IMAGE_CATALOGUE_DB:$DOCKER_TAG'
+                sh 'docker run -d --name $DOCKER_IMAGE_CATALOGUE_DB --env MYSQL_RANDOM_ROOT_PASSWORD=yes --env MYSQL_DATABASE=socksdb --rm --network $BUILD_TAG $DOCKER_ID/$DOCKER_IMAGE_CATALOGUE_DB:$DOCKER_TAG'
                 sh 'docker stop $DOCKER_IMAGE_CATALOGUE_DB'
                 sh 'docker run -d --name $DOCKER_IMAGE_FRONT_END --rm --network $BUILD_TAG $DOCKER_ID/$DOCKER_IMAGE_FRONT_END:$DOCKER_TAG'
                 sh 'docker stop $DOCKER_IMAGE_FRONT_END'
