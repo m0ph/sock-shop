@@ -75,7 +75,7 @@ agent any
                 sh 'docker push $DOCKER_ID/$DOCKER_IMAGE_CARTS:$DOCKER_TAG && docker push $DOCKER_ID/$DOCKER_IMAGE_CARTS:latest'
                 sh 'docker push $DOCKER_ID/$DOCKER_IMAGE_CATALOGUE:$DOCKER_TAG && docker push $DOCKER_ID/$DOCKER_IMAGE_CATALOGUE:latest'
                 sh 'docker push $DOCKER_ID/$DOCKER_IMAGE_CATALOGUE_DB:$DOCKER_TAG && docker push $DOCKER_ID/$DOCKER_IMAGE_CATALOGUE_DB:latest'
-                sh 'docker push $DOCKER_ID/$DOCKER_IMAGE_FRONT_EN:$DOCKER_TAG && docker push $DOCKER_ID/$DOCKER_IMAGE_FRONT_EN:latest'
+                sh 'docker push $DOCKER_ID/$DOCKER_IMAGE_FRONT_END:$DOCKER_TAG && docker push $DOCKER_ID/$DOCKER_IMAGE_FRONT_END:latest'
                 sh 'docker push $DOCKER_ID/$DOCKER_IMAGE_ORDERS:$DOCKER_TAG && docker push $DOCKER_ID/$DOCKER_IMAGE_ORDERS:latest'
                 sh 'docker push $DOCKER_ID/$DOCKER_IMAGE_PAYMENT:$DOCKER_TAG && docker push $DOCKER_ID/$DOCKER_IMAGE_PAYMENT:latest'
                 sh 'docker push $DOCKER_ID/$DOCKER_IMAGE_QUEUE:$DOCKER_TAG && docker push $DOCKER_ID/$DOCKER_IMAGE_QUEUE:latest'
