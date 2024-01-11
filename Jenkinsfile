@@ -101,6 +101,8 @@ agent any
                 sh 'kubectl apply -f ./microservices/carts/manifests -n $NAMESPACE'
                 sh 'kubectl apply -f ./microservices/queue-master/manifests -n $NAMESPACE'
                 sh 'kubectl apply -f ./microservices/rabbitmq/manifests -n $NAMESPACE'
+                sh 'kubectl apply -f ./microservices/user-db/manifests -n $NAMESPACE'
+                sh 'kubectl apply -f ./microservices/user/manifests -n $NAMESPACE'
             }
             
 
