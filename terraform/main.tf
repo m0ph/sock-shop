@@ -59,14 +59,26 @@ module "eks" {
 
   vpc_id                         = module.vpc.vpc_id
   subnet_ids                     = module.vpc.private_subnets
+  control_plane_subnet_ids = module.vpc.intra_subnets
   cluster_endpoint_public_access = true
   create_kms_key                 = false
   create_cloudwatch_log_group    = false
   cluster_encryption_config      = {}
 
+  cluster_addons = {
+    coredns = {
+      most_recent = true
+    }
+    kube-proxy = {
+      most_recent = true
+    }
+    vpc-cni = {
+      most_recent = true
+    }
+  }
+
   eks_managed_node_group_defaults = {
     ami_type = "AL2_x86_64"
-
   }
 
   eks_managed_node_groups = {
@@ -83,7 +95,7 @@ module "eks" {
   }
 }
 
-
+/*
 # https://aws.amazon.com/blogs/containers/amazon-ebs-csi-driver-is-now-generally-available-in-amazon-eks-add-ons/ 
 data "aws_iam_policy" "ebs_csi_policy" {
   arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
@@ -110,3 +122,4 @@ resource "aws_eks_addon" "ebs-csi" {
     "terraform" = "true"
   }
 }
+*/
