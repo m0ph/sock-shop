@@ -74,6 +74,7 @@ module "eks" {
       name = "node-group-1"
 
       instance_types = ["t2.micro"]
+      capacity_type  = "SPOT"
 
       min_size     = 1
       max_size     = 3
