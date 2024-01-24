@@ -94,7 +94,7 @@ module "eks" {
     one = {
       name = "node-group-1"
 
-      instance_types = ["m5.large"]
+      instance_types = ["t2.medium"]
       capacity_type  = "SPOT"
 
       min_size     = 2
