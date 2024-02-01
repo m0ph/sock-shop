@@ -7,8 +7,8 @@ terraform {
     bucket = "tf-remote-sock-shop"
     key = "terraform.tfstate" 
     region = "eu-west-3" 
-    access_key = "xxxxxxxxxxxxxxxx" # the access key created for the user who will be used by terraform
-    secret_key = "xxxxxxxxxxxxxxxx" # the secret key created for the user who will be used by terraform
+    #access_key = "xxxxxxxxxxxxxxxx" # the access key created for the user who will be used by terraform
+    #secret_key = "xxxxxxxxxxxxxxxx" # the secret key created for the user who will be used by terraform
   }
   /*
   cloud {
