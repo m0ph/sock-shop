@@ -1,11 +1,3 @@
-# Copyright (c) HashiCorp, Inc.
-# SPDX-License-Identifier: MPL-2.0
-# set provider to Amazon Web Services
-# region is defined in variables.tf
-provider "aws" {
-  region = var.region
-}
-
 # Filter out local zones, which are not currently supported 
 # with managed node groups
 data "aws_availability_zones" "available" {
